@@ -1,0 +1,9 @@
+[tool.ruff.lint]
+select = ["E", "F", "W", "I"]
+
+[tool.ruff.lint.isort]
+force-trailing-comma = true
+
+[tool.mypy]
+python_version = "3.14"
+strict = true

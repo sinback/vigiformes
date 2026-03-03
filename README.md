@@ -9,6 +9,39 @@ On a fresh Raspberry Pi, install system dependencies before running the applicat
 ./setup/install_deps.sh
 ```
 
+## Python environment
+
+This project uses Python 3.14 via [pyenv](https://github.com/pyenv/pyenv).
+
+```bash
+pyenv install 3.14
+python -m venv .venv
+source .venv/bin/activate
+```
+
+The `.python-version` file in the repo root will make pyenv select 3.14 automatically once it's installed.
+
+Then install dev tools:
+
+```bash
+pip install -r requirements-dev.txt
+```
+
+## Linting and type checking
+
+This project uses [Ruff](https://docs.astral.sh/ruff/) for linting and import sorting, and [mypy](https://mypy.readthedocs.io/) for type checking. Ruff's isort integration enforces alphabetical imports with trailing commas (configured in `pyproject.toml`).
+
+```bash
+ruff check .
+mypy .
+```
+
+To auto-fix import ordering and other fixable issues:
+
+```bash
+ruff check --fix .
+```
+
 ## Audio device detection and initial mic check
 
 PiOS uses ALSA for audio. You'll need to take note of its ALSA device name to get this project working.
