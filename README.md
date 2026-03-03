@@ -26,7 +26,7 @@ The hardware device name in this example is `hw:2,0`. The `2` comes from `card 2
 
 Verify the interface is working:
 ```bash
-arecord -D hw:2,0 -d 5 -f S16_LE -c 2 -r 44100 test.wav
+arecord -D hw:2,0 -d 5 -f S24_3LE -c 2 -r 44100 test.wav
 ```
 
 Make sure to replace `hw:2,0` with the device name you just learned using `arecord -l`. Depending on your device, you may need to use different flags. For example, for a mono-channel mic, you want `-c 1`. Read `arecord --help` if you're stuck or see errors. Listen to `test.wav` to confirm your mic is functioning.
