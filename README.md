@@ -64,3 +64,29 @@ arecord -D hw:2,0 -d 5 -f S24_3LE -c 2 -r 44100 test.wav
 ```
 
 Make sure to replace `hw:2,0` with the device name you just learned using `arecord -l`. Depending on your device, you may need to use different flags. For example, for a mono-channel mic, you want `-c 1`. Read `arecord --help` if you're stuck or see errors. Listen to `test.wav` to confirm your mic is functioning.
+
+## Recording service
+
+Once the mic is confirmed working, install the recording pipeline as a systemd user service:
+
+```bash
+./setup/install_recording_service.sh
+```
+
+Assuming you haven't overriden recording/config.toml, this installs and starts a service that
+continuously records 5-second clips to `recording/samples/`, and configures systemd to automatically
+delete clips older than 1 day. The service restarts automatically on failure and starts on boot
+without requiring an active login session.
+
+Check recording/config.toml for some tweakable settings (such as clip duration and destination for
+recordings on the filesystem). If you want to change the 1 day retention rule, you'll need to update
+`setup/install_recording_service.sh`.
+
+Useful commands:
+
+```bash
+systemctl --user status vigiformes-recording   # check service status
+systemctl --user stop vigiformes-recording     # stop recording
+systemctl --user start vigiformes-recording    # start recording
+journalctl --user -u vigiformes-recording      # view logs
+```
