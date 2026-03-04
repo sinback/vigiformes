@@ -41,6 +41,7 @@ pytest                # run tests
 
 ## Key Conventions
 
+- **Line length**: 100 characters; comments must wrap at 100; code may exceed it when splitting would hurt readability, but prefer one-arg-per-line with a trailing comma for long calls over inline style
 - **Validation**: use Pydantic `BaseModel` with `model_validate()` for all data/config parsing
 - **Audio**: `sounddevice` is the chosen library for the recording pipeline (wraps PortAudio/ALSA); the working ALSA device is `hw:2,0`, format `S24_3LE`, 2 channels, 44100 Hz
 - **Config files**: TOML preferred
