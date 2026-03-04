@@ -34,6 +34,7 @@ pytest                # run tests
 - `recording/` — audio recording pipeline
   - `config.toml` — default configuration (ALSA device, sample duration, output directory, etc.)
   - `config.py` — Pydantic config parser; use `load_config(path)` to get a typed `Config` object
+  - `record.py` — continuously records audio clips to disk; run with `python -m recording.record`
   - `samples/` — populated at runtime by the recording pipeline; not committed
 - `hooks/` — git hooks via [Autohook](https://github.com/Autohook/Autohook); pre-commit runs ruff then mypy (stops on first failure), pre-push is encouragement
 - `setup/` — shell scripts for bootstrapping a fresh Raspberry Pi environment

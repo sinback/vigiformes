@@ -11,3 +11,8 @@ select = ["E", "F", "W", "I"]
 [tool.mypy]
 python_version = "3.14"
 strict = true
+
+# no type stubs for these libs
+[[tool.mypy.overrides]]
+module = ["sounddevice", "soundfile"]
+ignore_missing_imports = true

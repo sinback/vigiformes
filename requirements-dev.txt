@@ -2,3 +2,5 @@ mypy
 pydantic
 pytest
 ruff
+sounddevice
+soundfile
