@@ -18,6 +18,18 @@ sample_rate = 44100
 format = "S24_3LE"
 """
 
+VALID_TOML_UNSUPPORTED_FORMAT = """
+[output]
+directory = "recording/samples"
+
+[recording]
+device = "hw:2,0"
+duration_seconds = 5
+channels = 2
+sample_rate = 44100
+format = "MP3"  # that's a file format, not a recording format
+"""
+
 
 @pytest.fixture
 def default_config_path() -> Path:
@@ -70,5 +82,17 @@ def test_invalid_config_values(tmp_path: Path) -> None:
     """
     bad_config = tmp_path / "config.toml"
     bad_config.write_text(VALID_TOML_WRONG_TYPES)
+    with pytest.raises(ValidationError):
+        load_config(bad_config)
+
+
+def test_unsupported_format(tmp_path: Path) -> None:
+    """
+    Given a config file with a format value not in the supported AlsaFormat literals,
+    when load_config is called,
+    then a Pydantic ValidationError is raised.
+    """
+    bad_config = tmp_path / "config.toml"
+    bad_config.write_text(VALID_TOML_UNSUPPORTED_FORMAT)
     with pytest.raises(ValidationError):
         load_config(bad_config)

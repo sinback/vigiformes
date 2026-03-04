@@ -1,7 +1,10 @@
 from pathlib import Path
+from typing import Literal
 
 import tomllib
 from pydantic import BaseModel
+
+AlsaFormat = Literal["S16_LE", "S24_3LE", "S32_LE"]
 
 
 class OutputConfig(BaseModel):
@@ -13,7 +16,7 @@ class RecordingConfig(BaseModel):
     duration_seconds: int
     channels: int
     sample_rate: int
-    format: str
+    format: AlsaFormat
 
 
 class Config(BaseModel):
