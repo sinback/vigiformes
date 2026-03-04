@@ -21,10 +21,11 @@ source .venv/bin/activate
 
 The `.python-version` file in the repo root will make pyenv select 3.14 automatically once it's installed.
 
-Then install dev tools:
+Then install dev tools and git hooks:
 
 ```bash
 pip install -r requirements-dev.txt
+hooks/autohook.sh install
 ```
 
 ## Linting and type checking
