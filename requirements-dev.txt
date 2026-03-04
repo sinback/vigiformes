@@ -1,2 +1,4 @@
 mypy
+pydantic
+pytest
 ruff
